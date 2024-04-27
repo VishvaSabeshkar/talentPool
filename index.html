@@ -3,142 +3,63 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="./css/talentPool.css">
+    <title>Talent Pool Cards</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"/>
-    <title>Talent Application Form</title>
+    <link rel="stylesheet" href="./css/talentPoolCards.css"> 
 </head>
 <body>
-    <section class="container">
+    <section class="pool">
         <div class="icn">
-            <h2> Application Form</h2>
             <img src="./css/icon.png" alt="Icon">
+            <h1>Talent Pool </h1>
         </div>
         
-        <form class="form" id="jobApplicationForm" method="post" action="./php/talentPool.php" onsubmit="return validateForm()">
-            <div class="input-box">
-                <label for="applicantID">Applicant ID:</label>
-                <div class="input-box">
-                    <input type="text" id="applicantID" name="applicantID" required>
-                </div>
-            </div>
-
-            <div class="input-box">
-                <label for="fullName">Full Name:</label>
-                <div class="input-box">
-                    <input type="text" id="fullName" name="fullName" required>
-                </div>
-            </div>
-
-            <div class="input-box">
-                <label for="age">Age:</label>
-                <div class="input-box">
-                    <input type="number" id="age" name="age" required>
-                </div>
-            </div>
-
-            <div class="gender-box">
-                <h3>Gender</h3>
-                <div class="gender-option">
-                    <div class="gender">
-                        <input type="radio" id="male" value='Male' name="gender">
-                        <label for="male">Male</label>
-                    </div>
-                    <div class="gender">
-                        <input type="radio" id="female" value='Female' name="gender">
-                        <label for="female">Female</label>
-                    </div>
-                    <div class="gender">
-                        <input type="radio" id="other" value='Other' name="gender">
-                        <label for="other">Other</label>
-                    </div>
-                </div>
-            </div>
-
-            <div class="input-box">
-                <label for="city">City:</label>
-                <div class="input-box">
-                    <input type="text" id="city" name="city" required>
-                </div>
-            </div>
-
-            <div class="input-box">
-                <label for="email">Email:</label>
-                <div class="input-box">
-                    <input type="email" id="email" name="email" required>
-                </div>
-            </div>
-
-            <div class="input-box ">
-                <label for="educationlevel">Highest Level of Education</label>
-
-                <div class="column">
-                    <select id="educationlevel" name="educationlevel" required>
-                        <option value="high-school">High School</option>
-                        <option value="associate-degree">Associate Degree</option>
-                        <option value="bachelors-degree">Bachelor's Degree</option>
-                        <option value="masters-degree">Master's Degree</option>
-                        <option value="phd">PhD</option> 
-                    </select>
-                    <div class="input-box">
-                        <input type="text" id="DegreeObtained" name="DegreeObtained" placeholder="Enter Degree Obtained">
-                    </div>
-                </div>
-                
-            </div>
-
-            <div class="input-box">
-                <label for="skills">Skills:</label>
-                <div class="input-box">
-                    <textarea id="skills" name="skills" rows="4" cols="50" required></textarea>
-                </div>
-            </div>
-            
-            <div class="input-box">
-                <label for="workExperience">Work Experience:</label>
-                <div class="input-box">
-                    <textarea id="workExperience" name="workExperience" rows="4" cols="50" required></textarea>
-                </div>
-            </div>
-            
-
-            <div class="input-box">
-                <label for="salaryExpected">Salary Expected:</label>
-                <div class="input-box">
-                    <input type="number" id="salaryExpected" name="salaryExpected" required>
-                </div>
-            </div>
-
-            <div class="input-box row">
-                <button type="submit">Submit</button>
-                <button type="button" onclick="clearForm()">Clear</button>
-            </div>
-        </form>
+        <div class="card-container" >
+            <!-- Cards will be generated here -->
+        </div>
+        <div class="input-box column">
+            <button id="createButton" type="button">Create Yours</button>
+        </div>
     </section>
 
     <script>
-        function clearForm() {
-            document.getElementById("jobApplicationForm").reset();
-        }
+        // Fetch data from backend (PHP script)
+        fetch('php/fetch_talent_pool_data.php') 
+            .then(response => response.json())
+            .then(data => {
+                // Render cards for each talent pool applicant
+                const cardContainer = document.querySelector('.card-container');
+                data.forEach(applicant => {
+                    const card = document.createElement('div');
+                    card.classList.add('card');
+    
+                    // Create a form within each card to display applicant's details
+                    card.innerHTML = `
+                        <form class="applicant-form">
+                            <h2>${applicant.fullName}</h2>
+                            <p>Age: ${applicant.age}</p>
+                            <p>Gender: ${applicant.gender}</p>
+                            <p>City: ${applicant.city}</p>
+                            <p>Email: ${applicant.email}</p>
+                            <p>Education Level: ${applicant.eduLevel}</p>
+                            <p>Course: ${applicant.course}</p>
+                            <p>Skills: ${applicant.skills}</p>
+                            <p>Work Experience: ${applicant.workExperience}</p>
+                            <p>Salary Expected: ${applicant.salaryExpected}</p>
+                            <!-- Add more details as needed -->
+                        </form>
+                    `;
+                    cardContainer.appendChild(card);
+                });
+            })
+            .catch(error => console.error('Error fetching data:', error));
 
-        function validateForm() {
-            var fullName = document.getElementById("fullName").value;
-            var age = document.getElementById("age").value;
-            var gender = document.querySelector('input[name="gender"]:checked');
-            var city = document.getElementById("city").value;
-            var email = document.getElementById("email").value;
-            var eduLevel = document.getElementById("educationlevel").value;
-            var skills = document.getElementById("skills").value;
-            var workExperience = document.getElementById("workExperience").value;
-            var salaryExpected = document.getElementById("salaryExpected").value;
-
-            if (fullName === "" || age === "" || gender === null || city === "" || email === "" || eduLevel === "" || skills === "" || workExperience === "" || salaryExpected === "") {
-                alert("All fields are required.");
-                return false;
-            }
-
-
-            return true;
-        }
+        // Add event listener to the button
+        const createButton = document.getElementById('createButton');
+        createButton.addEventListener('click', () => {
+            // Redirect to index.html
+            window.location.href = './talentPoolApplication.html';
+        });
     </script>
 </body>
 </html>
