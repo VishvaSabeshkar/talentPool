@@ -1,0 +1,17 @@
+CREATE DATABASE recruitment_company_system;
+
+CREATE TABLE talentPool (
+    talentPoolID INT AUTO_INCREMENT PRIMARY KEY,
+    applicantID VARCHAR(50) NOT NULL,
+    fullName VARCHAR(100) NOT NULL,
+    age INT NOT NULL,
+    gender ENUM('male', 'female', 'other') NOT NULL,
+    city VARCHAR(100) NOT NULL,
+    email VARCHAR(100) NOT NULL,
+    eduLevel VARCHAR(50) NOT NULL,
+    course VARCHAR(100),
+    skills TEXT NOT NULL,
+    workExperience TEXT NOT NULL,
+    salaryExpected DECIMAL(10, 2) NOT NULL,
+    submissionDate TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);

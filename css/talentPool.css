@@ -1,0 +1,176 @@
+/* Import Google font - Poppins */
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700&display=swap");
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Poppins", sans-serif;
+}
+
+body {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  background: #F1EDE6;
+}
+
+.container {
+  position: relative;
+  width: 100%; 
+  max-width: 900px;
+  background: #EBE3DB;
+  padding: 25px;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(#3A2D28, 0.2), 0 0 16px rgba(#3A2D28, 0.2);
+  overflow: hidden;
+}
+.icn{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-around;
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+
+.icn img {
+    margin-top: 10px; 
+}
+
+
+.container header {
+  font-size: 1.5rem;
+  color: black;
+  font-weight: 500;
+  text-align: left;
+  margin-bottom: 20px; 
+}
+.input-box textarea {
+    resize: vertical; 
+    width: 100%;
+}
+
+.form .input-box {
+  margin-top: 20px;
+}
+
+.input-box label {
+  color: black;
+  margin-bottom: 5px;
+  display: block;
+}
+
+.input-box input[type="text"],
+.input-box input[type="email"],
+.input-box select,
+.input-box textarea {
+  width: 100%;
+  height: 40px; 
+  padding: 10px;
+  font-size: 1rem;
+  color: #333;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  outline: none;
+  transition: border-color 0.3s ease;
+}
+
+.input-box input[type="text"]:focus,
+.input-box input[type="email"]:focus,
+.input-box select:focus,
+.input-box textarea:focus {
+  border-color: red;
+}
+
+.form .gender-box {
+  margin-top: 20px;
+}
+
+.gender-box h3 {
+  color: #333;
+  font-size: 1rem;
+  font-weight: 400;
+  margin-bottom: 8px;
+}
+
+.gender-option {
+  display: flex;
+  gap: 20px;
+}
+
+.gender-option .gender {
+  display: flex;
+  align-items: center;
+}
+
+.gender-option .gender input[type="radio"] {
+  margin-right: 5px; 
+}
+
+.form button {
+  height: 50px; 
+  width: 100px;
+  color: #fff;
+  font-size: 1rem;
+  font-weight: 400;
+  margin-top: 30px;
+  border: none;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  border-radius: 5px;
+  background: #A48374;
+}
+
+.form button:hover {
+  background: #D1C7BD;
+}
+
+.button-container {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 20px;
+}
+
+.button-container button:first-child {
+  margin-right: 10px;
+}
+
+@media screen and (max-width: 500px) {
+  .input-box,
+  .gender-option {
+    flex-direction: column;
+  }
+
+  .input-box {
+    margin-top: 10px;
+  }
+
+  .gender-option {
+    margin-top: 15px;
+  }
+
+  .gender-option .gender {
+    margin-top: 10px;
+  }
+
+  .button-container {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .button-container button:first-child {
+    margin-right: 0;
+    margin-bottom: 10px;
+  }
+}
+.row{
+    display: flex;
+    justify-content: space-around;
+}
