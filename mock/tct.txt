@@ -1,0 +1,56 @@
+@startuml
+!theme plain
+|Applicant|
+start
+:Visit Talent Pool page;
+|System|
+:View Talent Pool;
+|Database|
+:System retrieves and displays list of applicants;
+|Applicant|
+|System|
+:Applicant Registration Process;
+if (Data is valid?) then (yes)
+  |System|
+  :Store applicant's information;
+else (no)
+  |System|
+  :Prompt applicant to correct errors;
+endif
+
+|Database|
+:System updates talent pool with new applicant;
+|Database|
+:Updated database;
+|Applicant|
+:View Updated Talent Pool;
+|Applicant|
+|System|
+:Update Applicant Information;
+|System|
+if (Changes are valid?) then (yes)
+  |System|
+  :Modify applicant's information;
+else (no)
+  |System|
+  :Prompt applicant to correct changes;
+endif
+|Database|
+:Updated database;
+|Applicant|
+:View Updated Talent Pool;
+|System|
+:Delete Applicant;
+if (Confirmation received?) then (yes)
+  |System|
+  :Remove applicant's information;
+else (no)
+  |System|
+  :Process terminated;
+endif
+
+|Application Manager|
+:Monitor Application Activities;
+|System|
+stop
+@enduml
