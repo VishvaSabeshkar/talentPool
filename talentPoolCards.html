@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Talent Pool Cards</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"/>
+    <link rel="stylesheet" href="./css/talentPoolCards.css"> 
+</head>
+<body>
+    <section class="pool">
+        <div class="icn">
+            <img src="./css/icon.png" alt="Icon">
+            <h1>Talent Pool </h1>
+        </div>
+        
+        <div class="card-container">
+            <!-- Cards will be generated here -->
+        </div>
+        <div class="input-box column">
+            <button id="createButton" type="button">Create Yours</button>
+        </div>
+    </section>
+
+    <script>
+        // Fetch data from backend (PHP script)
+        fetch('php/fetch_talent_pool_data.php') 
+            .then(response => response.json())
+            .then(data => {
+                // Render cards for each talent pool applicant
+                const cardContainer = document.querySelector('.card-container');
+                data.forEach(applicant => {
+                    const card = document.createElement('div');
+                    card.classList.add('card');
+    
+                    // Create a form within each card to display applicant's details
+                    card.innerHTML = `
+                        <form class="applicant-form">
+                            <h2>${applicant.fullName}</h2>
+                            <p>Age: ${applicant.age}</p>
+                            <p>Gender: ${applicant.gender}</p>
+                            <p>City: ${applicant.city}</p>
+                            <p>Email: ${applicant.email}</p>
+                            <p>Education Level: ${applicant.eduLevel}</p>
+                            <p>Course: ${applicant.course}</p>
+                            <p>Skills: ${applicant.skills}</p>
+                            <p>Work Experience: ${applicant.workExperience}</p>
+                            <p>Salary Expected: ${applicant.salaryExpected}</p>
+                            <!-- Add more details as needed -->
+                        </form>
+                    `;
+                    cardContainer.appendChild(card);
+                });
+            })
+            .catch(error => console.error('Error fetching data:', error));
+
+        // Add event listener to the button
+        const createButton = document.getElementById('createButton');
+        createButton.addEventListener('click', () => {
+            // Redirect to index.html
+            window.location.href = './index.html';
+        });
+    </script>
+</body>
+</html>
