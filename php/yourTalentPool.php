@@ -14,7 +14,7 @@
             <h2>Your Talent Pool</h2>
             <img src="../css/icon.png" alt="Icon">
         </div>
-        <div class="talent-pool-info">
+        <div class="talent-pool-info row">
             <p id="talentPoolID">
                 <?php
                 // Include the database connection file
@@ -50,15 +50,12 @@
 
         <div>
 <!-- Button to update the applicant -->
-<div class="button-container">
+<div class="input-box row">
             <form action='./update_applicant.php' method='get'>
                 <input type='hidden' name='talentPoolID' value='<?php echo $talentPoolID ?>'>
                 <button class='update-button' type='submit' id='updateButton'>Update</button>
             </form>
-        </div>
-
         <!-- Form to delete the applicant with a confirmation prompt -->
-        <div class="button-container">
             <form id='deleteForm' action='./delete_applicant.php' method='get'>
                 <input type='hidden' name='talentPoolID' value='<?php echo $talentPoolID ?>'>
                 <button class='delete-button' type='button' id='deleteButton'>Delete</button>

@@ -14,7 +14,7 @@
             <img src="../css/icon.png" alt="Icon">
         </div>
         
-        <form class="form" id="jobApplicationForm" method="post" action="./talentPool.php" onsubmit="return validateForm()">
+        <form class="form" id="jobApplicationForm" method="post" action="./update.php" onsubmit="return validateForm()">
             <?php
             // Include the database connection file
             require_once './connection.php';
@@ -142,29 +142,7 @@
         </form>
     </section>
 
-    <script>
-        function clearForm() {
-            document.getElementById("jobApplicationForm").reset();
-        }
+    <script src="../js/script.js"></script>
 
-        function validateForm() {
-            var fullName = document.getElementById("fullName").value;
-            var age = document.getElementById("age").value;
-            var gender = document.querySelector('input[name="gender"]:checked');
-            var city = document.getElementById("city").value;
-            var email = document.getElementById("email").value;
-            var eduLevel = document.getElementById("educationlevel").value;
-            var skills = document.getElementById("skills").value;
-            var workExperience = document.getElementById("workExperience").value;
-            var salaryExpected = document.getElementById("salaryExpected").value;
-
-            if (fullName === "" || age === "" || gender === null || city === "" || email === "" || eduLevel === "" || skills === "" || workExperience === "" || salaryExpected === "") {
-                alert("All fields are required.");
-                return false;
-            }
-
-            return true;
-        }
-    </script>
 </body>
 </html>

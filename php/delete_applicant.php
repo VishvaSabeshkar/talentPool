@@ -14,7 +14,7 @@ if(isset($_GET['talentPoolID'])) {
     
     if ($statement->execute()) {
         // Redirect to the talentPoolCards.html page
-        header("Location: ../index.html");
+        header("Location: ../index.php");
         exit(); // Make sure to exit after redirecting
     } else {
         echo "Error deleting record: " . $conn->error;
